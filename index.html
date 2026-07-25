@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>大阪親子旅行 2026</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --green: #16a34a;
+      --orange: #f97316;
+      --red: #dc2626;
+      --purple: #7c3aed;
+      --border: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-padding-top: 0px;
+    }
+
+    section[id]::before {
+      content: "";
+      display: block;
+      height: 140px;
+      margin-top: -140px;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      font-size: 16px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      color: white;
+      padding: 10px 10px 18px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+
+    header h1 {
+      margin: 0 0 6px;
+      font-size: 22px;
+      line-height: 1.25;
+    }
+
+    header p {
+      margin: 0;
+      font-size: 14px;
+      opacity: 0.95;
+    }
+
+    nav {
+      display: flex;
+      overflow-x: auto;
+      gap: 8px;
+      padding: 10px 12px;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 78px;
+      z-index: 9;
+    }
+
+    nav a {
+      flex: 0 0 auto;
+      text-decoration: none;
+      background: #eef2ff;
+      color: #3730a3;
+      padding: 9px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    nav a.alt {
+      background: #ecfdf5;
+      color: #047857;
+    }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 14px;
+    }
+
+    section {
+      margin-bottom: 26px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      margin: 18px 0 10px;
+      padding-left: 10px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: -4px;
+      margin-bottom: 12px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 8px rgba(15,23,42,0.05);
+    }
+
+    .time {
+      display: inline-block;
+      font-size: 15px;
+      font-weight: 800;
+      color: white;
+      background: var(--primary);
+      padding: 4px 9px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: 800;
+      margin: 2px 0 8px;
+    }
+
+    .location {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .info {
+      margin: 8px 0;
+      padding: 9px 10px;
+      background: #f9fafb;
+      border-radius: 12px;
+      font-size: 15px;
+    }
+
+    .label {
+      font-weight: 800;
+      color: #374151;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      color: white;
+      background: var(--primary);
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 15px;
+    }
+
+    .btn.secondary {
+      background: #111827;
+    }
+
+    .btn.green {
+      background: var(--green);
+    }
+
+    .btn.orange {
+      background: var(--orange);
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 4px 8px;
+      border-radius: 999px;
+      margin: 2px 4px 6px 0;
+    }
+
+    .tag.must {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .tag.optional {
+      background: #ffedd5;
+      color: #c2410c;
+    }
+
+    .tag.backup {
+      background: #ede9fe;
+      color: #6d28d9;
+    }
+
+    .tag.warning {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    details {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 900;
+      font-size: 17px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .checklist li {
+      list-style: none;
+      margin-left: -20px;
+      padding: 8px 0;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    .checklist input {
+      transform: scale(1.25);
+      margin-right: 8px;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .top-link {
+      display: block;
+      text-align: center;
+      margin: 18px 0 6px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 30px 12px 40px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 420px) {
+      body {
+        font-size: 16px;
+      }
+
+      header h1 {
+        font-size: 21px;
+      }
+
+      nav {
+        top: 76px;
+      }
+
+      .card {
+        border-radius: 15px;
+      }
+
+      .title {
+        font-size: 17px;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+  <header>
+    <h1>大阪親子旅行 2026</h1>
+    <p>2026-07-26 至 2026-08-01｜iPhone 版離線行程頁</p>
+  </header>
+
+  <nav>
+    <a href="#day1">Day 1</a>
+    <a href="#day2">Day 2</a>
+    <a href="#day3">Day 3</a>
+    <a href="#day4">Day 4</a>
+    <a href="#day5">Day 5</a>
+    <a href="#day6">Day 6</a>
+    <a href="#day7">Day 7</a>
+    <a class="alt" href="#tickets">票券</a>
+    <a class="alt" href="#food">餐廳</a>
+    <a class="alt" href="#checklist">Checklist</a>
+    <a class="alt" href="#usj">USJ</a>
+  </nav>
+
+  <main>
+    <section id="quick">
+      <h2 class="section-title">快速提醒</h2>
+      <div class="card">
+        <span class="tag warning">7月尾防暑</span>
+        <span class="tag must">親子行程</span>
+        <span class="tag optional">Optional 不要硬排</span>
+        <div class="info">
+          <span class="label">每日必帶：</span>水、帽、防曬、小風扇、濕紙巾、小朋友藥物、冷感毛巾、鹽糖/電解質飲品。
+        </div>
+        <div class="info">
+          <span class="label">原則：</span>小朋友攰就刪 optional；優先室內、有冷氣、交通簡單。
+        </div>
+      </div>
+    </section>
+
+    <section id="day1">
+      <h2 class="section-title">Day 1｜7/26 Sun｜抵達大阪 + 道頓堀</h2>
+      <p class="subtitle">重點：航班、Rapi:t、酒店、輕鬆晚餐散步。</p>
+
+      <div class="card">
+        <div class="time">05:30</div>
+        <div class="title">抵達香港國際機場</div>
+        <div class="location">香港國際機場</div>
+        <div class="info"><span class="label">交通：</span>自行前往機場</div>
+        <div class="info"><span class="label">注意：</span>HK Express 輕便飛：確認寄艙及手提行李額。</div>
+        <div class="buttons"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Hong+Kong+International+Airport">開 Google Maps</a></div>
+      </div>
+
+      <div class="card">
+        <div class="time">08:00-12:45</div>
+        <div class="title">航班 UO810 香港至關西</div>
+        <div class="location">HKG → KIX</div>
+        <div class="info"><span class="label">交通：</span>飛機</div>
+        <div class="info"><span class="label">注意：</span>到埗後先去洗手間、買飲品、處理交通票。</div>
+        <div class="buttons"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Kansai+International+Airport+Terminal+1">KIX 地圖</a></div>
+      </div>
+
+      <div class="card">
+        <div class="time">14:35-15:15</div>
+        <div class="title">南海 Rapi:t 到難波</div>
+        <div class="location">南海關西機場站 / 南海難波站</div>
+        <div class="info"><span class="label">交通：</span>南海電鐵特急 Rapi:t</div>
+        <div class="info"><span class="label">注意：</span>建議網上預購或到埗即買指定席。</div>
+        <div class="buttons"><a class="btn" href="https://www.google.com/maps/dir/?api=1&origin=Kansai+International+Airport+Terminal+1&destination=Nankai+Namba+Station&travelmode=transit">路線</a></div>
+      </div>
+
+      <div class="card">
+        <div class="time">15:20-15:45</div>
+        <div class="title">的士前往酒店</div>
+        <div class="location">Apartment Hotel 11 Shinsaibashi III</div>
+        <div class="info"><span class="label">交通：</span>的士</div>
+        <div class="info"><span class="label">注意：</span>帶小朋友及行李，的士最舒服。</div>
+        <div class="buttons"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Apartment+Hotel+11+Shinsaibashi+III">酒店地圖</a></div>
+      </div>
+
+      <div class="card">
+        <div class="time">18:00-20:00</div>
+        <div class="title">道頓堀晚餐及散步</div>
+        <div class="location">道頓堀 / 心齋橋</div>
+        <span class="tag optional">道頓堀水上觀光船即興可選</span>
+        <div class="info"><span class="label">交通：</span>步行</div>
+        <div class="info"><span class="label">注意：</span>第一日不要太夜；如不用排隊、小朋友精神好，才考慮約20分鐘河船。</div>
+        <div class="buttons"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Dotonbori+Osaka">道頓堀地圖</a></div>
+      </div>
+
+      <a class="top-link" href="#top">回到頂部</a>
+    </section>
+
+    <section id="day2">
+      <h2 class="section-title">Day 2｜7/27 Mon｜Kids Plaza + 中之島 / 梅田</h2>
+      <p class="subtitle">重點：室內放電、梅田購物、Nintendo OSAKA。</p>
+
+      <div class="card">
+        <div class="time">09:30-13:00</div>
+        <div class="title">Kids Plaza Osaka 室內放電</div>
+        <div class="location">Kids Plaza Osaka</div>
+        <span class="tag must">親子 Must Go</span>
+        <div class="info"><span class="label">交通：</span>地鐵至扇町站</div>
+        <div class="info"><span class="label">注意：</span>留意休館日；小朋友可能玩到不想走。</div>
+        <div class="buttons"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Kids+Plaza+Osaka">開地圖</a></div>
+      </div>
+
+      <div class="card">
+        <div class="time">13:30-14:30</div>
+        <div class="title">童書森林中之島</div>
+        <div class="location">Nakanoshima Children’s Book Forest</div>
+        <span class="tag optional">可選 / 雨天備案</span>
+        <div class="info"><span class="label">交通：</span>地鐵 / 的士</div>
+        <div class="info"><span class="label">注意：</span>安靜閱讀型景點；如小朋友累或想放電，直接跳過去梅田。</div>
+        <div class="buttons"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Nakanoshima+Children%27s+Book+Forest">開地圖</a></div>
+      </div>
+
+      <div class="card">
+        <div class="time">15:00-19:30</div>
+        <div class="title">梅田購物 / Nintendo OSAKA</div>
+        <div class="location">Nintendo Osaka / Daimaru Umeda</div>
+        <span class="tag must">購物重點</span>
+        <div class="info"><span class="label">交通：</span>地鐵 / JR</div>
+        <div class="info"><span class="label">注意：</span>梅田站很大，拖實小朋友；店舖人多時彈性處理。</div>
+        <div class="buttons"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Nintendo+Osaka">Nintendo 地圖</a></div>
+      </div>
+
+      <a class="top-link" href="#top">回到頂部</a>
+    </section>
+
+    <section id="day3">
+      <h2 class="section-title">Day 3｜7/28 Tue｜海遊館 + 樂高 + 天保山</h2>
+      <p class="subtitle">重點：全日集中天保山，optional 視乎天氣及體力。</p>
+
+      <div class="card">
+        <div class="time">09:30-12:00</div>
+        <div class="title">大阪海遊館</div>
+        <div class="location">大阪海遊館</div>
+        <span class="tag must">Must Go</span>
+        <div class="info"><span class="label">交通：</span>地鐵至大阪港站步行</div>
+        <div class="info"><span class="label">注意：</span>室內冷氣較凍，帶薄外套；暑假建議買指定時段票。</div>
+        <div class="buttons"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Osaka+Aquarium+Kaiyukan">開地圖</a></div>
+      </div>
+
+      <div class="card">
+        <div class="time">12:00-13:00</div>
+        <div class="title">天保山 Market Place 午餐</div>
+        <div class="location">Tempozan Marketplace</div>
+        <div class="info"><span class="label">交通：</span>步行</div>
+        <div class="info"><span class="label">注意：</span>美食街選擇多，有冷氣，適合親子休息。</div>
+        <div class="buttons"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Tempozan+Marketplace">開地圖</a></div>
+      </div>
+
+      <div class="card">
+        <div class="time">13:00-14:30</div>
+        <div class="title">大阪樂高樂園 Discovery Center</div>
+        <div class="location">LEGOLAND Discovery Center Osaka</div>
+        <span class="tag must">正式加入</span>
+        <div class="info"><span class="label">交通：</span>步行</div>
+        <div class="info"><span class="label">注意：</span>室內有冷氣、5歲親子友善；建議預先查時段 / 購票。</div>
+        <div class="buttons"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=LEGOLAND+Discovery+Center+Osaka">開地圖</a></div>
+      </div>
+
+      <div class="card">
+        <div class="time">14:30-15:00</div>
+        <div class="title">天保山大摩天輪</div>
+        <div class="location">Tempozan Ferris Wheel</div>
+        <span class="tag optional">可選</span>
+        <div class="info"><span class="label">注意：</span>非常順路；視乎天氣、排隊及小朋友體力。</div>
+        <div class="buttons"><a class="btn orange" href="https://www.google.com/maps/search/?api=1&query=Tempozan+Ferris+Wheel">開地圖</a></div>
+      </div>
+
+      <div class="card">
+        <div class="time">15:00-15:50</div>
+        <div class="title">大阪帆船型觀光船 聖瑪麗亞號</div>
+        <div class="location">Osaka Bay Cruise Santa Maria</div>
+        <span class="tag optional">天氣好 / 有體力先坐</span>
+        <div class="info"><span class="label">注意：</span>如已疲倦直接跳過。</div>
+        <div class="buttons"><a class="btn orange" href="https://www.google.com/maps/search/?api=1&query=Osaka+Bay+Cruise+Santa+Maria">開地圖</a></div>
+      </div>
+
+      <div class="card">
+        <div class="time">16:30-19:30</div>
+        <div class="title">心齋橋 / 難波購物晚餐</div>
+        <div class="location">心齋橋筋商店街</div>
+        <span class="tag optional">Pokemon Center / Lego Shinsaibashi 經過可入</span>
+        <div class="info"><span class="label">交通：</span>地鐵</div>
+        <div class="info"><span class="label">注意：</span>藥妝及 Donki 留意退稅及行李重量；不要太晚。</div>
+        <div class="buttons"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Shinsaibashi+Shopping+Street+Osaka">開地圖</a></div>
+      </div>
+
+      <a class="top-link" href="#top">回到頂部</a>
+    </section>
+
+    <section id="day4">
+      <h2 class="section-title">Day 4｜7/29 Wed｜京都鐵道博物館</h2>
+      <p class="subtitle">重點：跨城市日，避免加太多戶外景點。</p>
+
+      <div class="card">
+        <div class="time">08:45-17:30</div>
+        <div class="title">京都鐵道博物館及京都站</div>
+        <div class="location">京都鐵道博物館</div>
+        <span class="tag must">Must Go</span>
+        <div class="info"><span class="label">交通：</span>JR 大阪站 → 京都站 → 梅小路京都西站</div>
+        <div class="info"><span class="label">注意：</span>跨城市行程；Umekoji Park 只短暫經過，不額外加戶外景點。</div>
+        <div class="buttons"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Kyoto+Railway+Museum">開地圖</a></div>
+      </div>
+
+      <a class="top-link" href="#top">回到頂部</a>
+    </section>
+
+    <section id="day5">
+      <h2 class="section-title">Day 5｜7/30 Thu｜USJ 全日</h2>
+      <p class="subtitle">重點：入園即抽 Super Nintendo World 整理券。</p>
+
+      <div class="card">
+        <div class="time">07:45-19:30</div>
+        <div class="title">日本環球影城 USJ 全日</div>
+        <div class="location">Universal Studios Japan</div>
+        <span class="tag must">Super Nintendo World</span>
+        <span class="tag must">Universal Wonderland</span>
+        <span class="tag must">Minion Park</span>
+        <div class="info"><span class="label">交通：</span>地鐵 / JR：心齋橋 → 西九條 → Universal City</div>
+        <div class="info"><span class="label">注意：</span>下載 USJ App，入園即抽 Super Nintendo World 整理券；注意101cm身高限制及防暑。</div>
+        <div class="buttons">
+          <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Universal+Studios+Japan">USJ 地圖</a>
+          <a class="btn secondary" href="#usj">看 101cm 清單</a>
+        </div>
+      </div>
+
+      <a class="top-link" href="#top">回到頂部</a>
+    </section>
+
+    <section id="day6">
+      <h2 class="section-title">Day 6｜7/31 Fri｜奈良 + 夜景可選</h2>
+      <p class="subtitle">重點：餵鹿要小心；太熱 / 落雨可改 NIFREL backup。</p>
+
+      <div class="card">
+        <div class="time">09:00-16:30</div>
+        <div class="title">奈良公園餵鹿、東大寺、商店街</div>
+        <div class="location">奈良公園 / 東大寺</div>
+        <span class="tag must">Must Go</span>
+        <span class="tag warning">餵鹿注意</span>
+        <div class="info"><span class="label">交通：</span>近鐵大阪難波 → 近鐵奈良</div>
+        <div class="info"><span class="label">注意：</span>鹿會搶食，成人要貼身看顧小朋友；天氣太熱可改 NIFREL backup。</div>
+        <div class="buttons"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Nara+Park">奈良公園地圖</a></div>
+      </div>
+
+      <div class="card">
+        <div class="time">17:30-19:30</div>
+        <div class="title">晚餐 / 夜景可選</div>
+        <div class="location">Harukas 300 / Tsutenkaku</div>
+        <span class="tag optional">HARUKAS 優先</span>
+        <span class="tag optional">通天閣只影相食串炸</span>
+        <div class="info"><span class="label">注意：</span>奈良後如疲倦請跳過；親子舒適度 HARUKAS 優先。</div>
+        <div class="buttons">
+          <a class="btn orange" href="https://www.google.com/maps/search/?api=1&query=Harukas+300">HARUKAS</a>
+          <a class="btn orange" href="https://www.google.com/maps/search/?api=1&query=Tsutenkaku">通天閣</a>
+        </div>
+      </div>
+
+      <details>
+        <summary>Day 6 Backup：NIFREL + EXPOCITY</summary>
+        <p>如奈良太熱、落雨、或怕鹿，可改室內行程。</p>
+        <ul>
+          <li><strong>NIFREL：</strong>室內水族館 / 動物園 / 美術館混合設施。</li>
+          <li><strong>EXPOCITY：</strong>商場用餐及休息。</li>
+          <li><strong>太陽之塔：</strong>只建議順便外觀拍照，不要特登長時間戶外。</li>
+        </ul>
+        <p><a class="btn" href="https://maps.app.goo.gl/Af8bBCcDcESFZgtdA">NIFREL 地圖</a></p>
+      </details>
+
+      <a class="top-link" href="#top">回到頂部</a>
+    </section>
+
+    <section id="day7">
+      <h2 class="section-title">Day 7｜8/1 Sat｜難波最後購物 + 回香港</h2>
+      <p class="subtitle">重點：不要加 KIX Sky View / Rinku Outlet，準時到機場。</p>
+
+      <div class="card">
+        <div class="time">09:30-10:20</div>
+        <div class="title">Check-out，的士到南海難波站寄存行李</div>
+        <div class="location">南海難波站 Coin Locker</div>
+        <div class="info"><span class="label">交通：</span>的士</div>
+        <div class="info"><span class="label">注意：</span>大型 locker 可能爆滿，準備硬幣或 IC Card。</div>
+        <div class="buttons"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Namba+Station+Coin+Locker">Locker 地圖</a></div>
+      </div>
+
+      <div class="card">
+        <div class="time">10:30-13:30</div>
+        <div class="title">黑門市場 / Namba Parks / Namba City 最後購物午餐</div>
+        <div class="location">黑門市場 / Namba Parks</div>
+        <div class="info"><span class="label">交通：</span>步行</div>
+        <div class="info"><span class="label">注意：</span>天氣太熱可優先選 Namba Parks / Namba City 室內；不要吃太飽，留意行李重量。</div>
+        <div class="buttons">
+          <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Namba+Parks+Osaka">Namba Parks</a>
+          <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Kuromon+Market+Osaka">黑門市場</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="time">14:00-17:00</div>
+        <div class="title">Rapi:t 到關西機場，乘 UO899 回香港</div>
+        <div class="location">關西國際機場 T1</div>
+        <span class="tag warning">15:00 前到機場</span>
+        <div class="info"><span class="label">交通：</span>南海 Rapi:t / 飛機</div>
+        <div class="info"><span class="label">注意：</span>不建議加 KIX Sky View / Rinku Outlet；液體限制及退稅檢查。</div>
+        <div class="buttons"><a class="btn" href="https://www.google.com/maps/dir/?api=1&origin=Nankai+Namba+Station&destination=Kansai+International+Airport+Terminal+1&travelmode=transit">去 KIX 路線</a></div>
+      </div>
+
+      <a class="top-link" href="#top">回到頂部</a>
+    </section>
+
+    <section id="tickets">
+      <h2 class="section-title">票券提醒</h2>
+
+      <details open>
+        <summary>出發前建議先買 / 確認</summary>
+        <ul>
+          <li><strong>USJ 1 Day Studio Pass：</strong>越早買越好，暑假熱門。<br><a href="https://www.usj.co.jp/web/en/us/tickets/">USJ 官方票券</a></li>
+          <li><strong>USJ Express Pass：</strong>如想玩熱門設施可考慮，價格浮動。</li>
+          <li><strong>大阪海遊館：</strong>暑假建議買指定日期時段票。<br><a href="https://www.kaiyukan.com/language/eng/">海遊館官方</a></li>
+          <li><strong>南海 Rapi:t：</strong>機場往返難波，建議指定席。<br><a href="https://www.howto-osaka.com/tc/">南海官方</a></li>
+          <li><strong>大阪樂高樂園：</strong>建議預先購票及確認入場時段。<br><a href="https://www.legolanddiscoverycenter.com/osaka/">官方網站</a></li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>現場 / Optional 票券</summary>
+        <ul>
+          <li><strong>天保山摩天輪：</strong>約 ¥900/人，視乎天氣及體力。</li>
+          <li><strong>京都鐵道博物館：</strong>成人約 ¥1,500；幼兒約 ¥200。SL 蒸汽火車另購約 ¥300。<br><a href="https://www.kyotorailwaymuseum.jp/en/">官方網站</a></li>
+          <li><strong>東大寺大佛殿：</strong>成人約 ¥800；小學生約 ¥400，一般不用預約。</li>
+          <li><strong>鹿仙貝：</strong>約 ¥200/份，一次只給小朋友拿一塊。</li>
+          <li><strong>HARUKAS 300：</strong>奈良後有體力先去。<br><a href="https://www.abenoharukas-300.jp/en/">官方網站</a></li>
+          <li><strong>道頓堀水上觀光船：</strong>Day 1 / Day 3 晚上即興，不建議硬排。</li>
+        </ul>
+      </details>
+
+      <a class="top-link" href="#top">回到頂部</a>
+    </section>
+
+    <section id="food">
+      <h2 class="section-title">餐廳候選</h2>
+
+      <details open>
+        <summary>Day 1｜道頓堀</summary>
+        <ul>
+          <li><strong>Kura Sushi 道頓堀店：</strong>壽司，約 ¥3,000-¥5,000/家庭，適合小朋友，有扭蛋。<br><a href="https://www.google.com/maps/search/?api=1&query=Kura+Sushi+Dotonbori+Osaka">地圖</a></li>
+          <li><strong>神座拉麵 道頓堀店：</strong>拉麵，約 ¥3,000-¥4,000/家庭，簡單快食。<br><a href="https://www.google.com/maps/search/?api=1&query=Kamukura+Ramen+Dotonbori">地圖</a></li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Day 2｜梅田</summary>
+        <ul>
+          <li><strong>梅田大丸 / LUCUA 餐廳樓層：</strong>約 ¥1,500-¥3,000/人，有冷氣，Nintendo OSAKA 前後方便。<br><a href="https://www.google.com/maps/search/?api=1&query=Daimaru+Umeda+Restaurants">地圖</a></li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Day 3｜天保山 / 心齋橋</summary>
+        <ul>
+          <li><strong>Tempozan Marketplace 美食街：</strong>約 ¥1,000-¥2,000/人，選擇多，有冷氣。<br><a href="https://www.google.com/maps/search/?api=1&query=Tempozan+Marketplace+Food+Court">地圖</a></li>
+          <li><strong>心齋橋大丸 / Pokemon Center 附近餐廳：</strong>約 ¥1,500-¥3,000/人。<br><a href="https://www.google.com/maps/search/?api=1&query=Shinsaibashi+Daimaru+Restaurants">地圖</a></li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Day 4｜京都</summary>
+        <ul>
+          <li><strong>京都鐵道博物館餐廳：</strong>約 ¥1,000-¥2,000/人，方便不趕路。<br><a href="https://www.google.com/maps/search/?api=1&query=Kyoto+Railway+Museum+Restaurant">地圖</a></li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Day 6｜奈良 / 阿倍野 / 新世界</summary>
+        <ul>
+          <li><strong>Mellow Cafe Nara：</strong>Cafe，約 ¥1,500-¥2,500/人，近奈良站。<br><a href="https://www.google.com/maps/search/?api=1&query=Mellow+Cafe+Nara">地圖</a></li>
+          <li><strong>中谷堂：</strong>麻糬小食，約 ¥200-¥300/個，可看高速搗麻糬。<br><a href="https://www.google.com/maps/search/?api=1&query=Nakatanidou+Nara">地圖</a></li>
+          <li><strong>阿倍野 HARUKAS 餐廳：</strong>室內舒適，約 ¥1,500-¥4,000/人。<br><a href="https://www.google.com/maps/search/?api=1&query=Abeno+Harukas+Restaurants">地圖</a></li>
+          <li><strong>新世界串炸：</strong>約 ¥1,500-¥3,000/人，想影通天閣及地道晚餐可選。<br><a href="https://www.google.com/maps/search/?api=1&query=Shinsekai+Kushikatsu+Osaka">地圖</a></li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Day 7｜難波</summary>
+        <ul>
+          <li><strong>黑門市場：</strong>約 ¥5,000-¥10,000/家庭，遊客區價錢偏高，先看價錢。<br><a href="https://www.google.com/maps/search/?api=1&query=Kuromon+Market+Osaka">地圖</a></li>
+        </ul>
+      </details>
+
+      <a class="top-link" href="#top">回到頂部</a>
+    </section>
+
+    <section id="checklist">
+      <h2 class="section-title">Checklist</h2>
+      <ul class="checklist">
+        <li><label><input type="checkbox"> 出發前30-14日：購買 USJ 門票 / 如需要 Express Pass</label></li>
+        <li><label><input type="checkbox"> 出發前30-14日：確認 HK Express 輕便飛行李額及加購寄艙行李</label></li>
+        <li><label><input type="checkbox"> 出發前14-7日：購買海遊館門票 / Rapi:t 票券</label></li>
+        <li><label><input type="checkbox"> 出發前14-7日：購買 / 確認大阪樂高樂園入場時段或門票</label></li>
+        <li><label><input type="checkbox"> 出發前7日：下載 USJ App、Google Maps、設定 Suica / ICOCA</label></li>
+        <li><label><input type="checkbox"> 出發前7日：準備日圓現金 ¥80,000-¥120,000</label></li>
+        <li><label><input type="checkbox"> 出發前7日：確認童書森林中之島開放 / 入場安排</label></li>
+        <li><label><input type="checkbox"> 出發前7日：準備 Day 6 backup：NIFREL + EXPOCITY + 太陽之塔外觀</label></li>
+        <li><label><input type="checkbox"> 出發前3日：確認酒店入住密碼、地址、聯絡方法</label></li>
+        <li><label><input type="checkbox"> 出發前1日：Online check-in、檢查護照、保險、行李重量</label></li>
+        <li><label><input type="checkbox"> 每日：水、帽、防曬、小風扇、濕紙巾、小朋友藥物</label></li>
+        <li><label><input type="checkbox"> 每日：冷感毛巾、鹽糖 / 電解質飲品</label></li>
+        <li><label><input type="checkbox"> USJ 當日：入園即抽 Super Nintendo World 整理券</label></li>
+        <li><label><input type="checkbox"> 奈良當日：餵鹿時大人貼身看顧，不讓小朋友拿整疊鹿仙貝</label></li>
+        <li><label><input type="checkbox"> 回程當日：14:00 左右離開難波，15:00 前到 KIX</label></li>
+        <li><label><input type="checkbox"> 回程當日：液體100ml限制；檢查退稅品及行李重量</label></li>
+      </ul>
+
+      <p class="small">注意：此 HTML 的 checkbox 在部分瀏覽器重新開啟後未必保存狀態。如要長期保存完成狀態，可改用 Apple Notes / Notion checklist。</p>
+      <a class="top-link" href="#top">回到頂部</a>
+    </section>
+
+    <section id="usj">
+      <h2 class="section-title">USJ｜101cm 兒童遊玩清單</h2>
+
+      <details open>
+        <summary>🍄 超級任天堂世界</summary>
+        <ul>
+          <li>✅ <strong>耀西歷險記：</strong>86cm，可玩。必玩，溫和適合拍照。</li>
+          <li>✅ <strong>能量手環關鍵挑戰：</strong>無限制，可玩。強烈推薦。</li>
+          <li>✅ <strong>角色見面會：</strong>無限制，可玩。跟瑪利歐兄弟拍照互動。</li>
+          <li>❌ <strong>瑪利歐賽車～庫巴的挑戰書：</strong>107cm，不可玩。大人可用輪流乘坐。</li>
+          <li>❌ <strong>大金剛的瘋狂礦車：</strong>107cm，不可玩。</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>🎠 環球奇境 / 兒童天堂</summary>
+        <ul>
+          <li>✅ 飛天史努比：92cm，可玩。</li>
+          <li>✅ 史努比雲霄飛車大競賽：92cm，可玩。</li>
+          <li>✅ 艾蒙的GO-GO滑板：92cm，可玩。</li>
+          <li>✅ 莫比的氣球之旅：92cm，可玩。</li>
+          <li>✅ Hello Kitty 夢幻蛋糕杯：無限制，可玩。</li>
+          <li>✅ 艾蒙的泡泡遨遊等室內區：無限制，可玩，適合放電。</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>🍌 小小兵樂園</summary>
+        <ul>
+          <li>✅ 冰凍雷射光乘車遊：92cm，可玩。</li>
+          <li>⚠️ 小小兵瘋狂乘車遊：102cm，邊緣身高。穿鞋若達102cm可能放行，但有被拒風險。</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>🧙‍♂️ 哈利波特魔法世界</summary>
+        <ul>
+          <li>✅ 鷹馬的飛行：92cm，可玩，有一點速度感。</li>
+          <li>❌ 哈利波特禁忌之旅：122cm，不可玩。</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>🦈 其他園區</summary>
+        <ul>
+          <li>✅ 大白鯊：無限制，可玩。注意火光和巨鯊，膽小小孩可能會怕。</li>
+          <li>✅ 歡樂好聲音巡迴演唱會：無限制，可玩，適合休息觀賞。</li>
+          <li>✅ 水世界：無限制，可玩。爆破聲較大。</li>
+          <li>❌ 侏儸紀公園乘船遊：107cm，不可玩。</li>
+        </ul>
+      </details>
+
+      <a class="top-link" href="#top">回到頂部</a>
+    </section>
+
+    <section id="useful">
+      <h2 class="section-title">實用連結</h2>
+      <div class="card">
+        <div class="title">大阪市 10日天氣｜Tenki.jp</div>
+        <div class="buttons">
+          <a class="btn green" href="https://tenki.jp/forecast/6/30/6200/27100/10days.html">查看天氣</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="title">酒店</div>
+        <div class="location">Apartment Hotel 11 Shinsaibashi III</div>
+        <div class="buttons">
+          <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Apartment+Hotel+11+Shinsaibashi+III">酒店 Google Maps</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      大阪親子旅行 2026｜Mobile Offline HTML｜建議用 Safari 開啟並加入主畫面
+    </footer>
+  </main>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a20b87e27fcf1ebf',t:'MTc4NDk4NjM0Nw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"63d9885b155f4fa890e5330e41a8ff5b","r":1}' crossorigin="anonymous"></script>
+</body>
+</html>
